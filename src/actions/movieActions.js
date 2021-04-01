@@ -45,7 +45,7 @@ export function fetchMovie(movie_title) {
                 if(!response.ok) {
                     throw Error(response.statusText);
                 }
-                return response.json;
+                return response.json();
             })
             .then((res) => {
                 dispatch(movieFetched(res));

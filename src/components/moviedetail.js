@@ -5,14 +5,12 @@ import {Card, ListGroup, ListGroupItem } from 'react-bootstrap';
 import { BsStarFill } from 'react-icons/bs'
 import { Image } from 'react-bootstrap';
 
-import { LinkContainer } from "react-router-bootstrap"
-
 class MovieDetail extends Component{
 
     componentDidMount() {
         const {dispatch} = this.props;
         if (this.props.selectedMovie == null){
-            dispatch(fetchMovie(this.props.movie_title));
+            dispatch(fetchMovie(this.props.movieId));
         }
 
     }
@@ -34,7 +32,7 @@ class MovieDetail extends Component{
                         <ListGroupItem>
                             {this.props.selectedMovie.actors.map((actor, i) =>
                                 <p key={i}>
-                                    <b>{actor.actorName}</b> {actor.characterName}
+                                    <b>{actor.actor_name}</b> {actor.character_name}
                                 </p>)}
                         </ListGroupItem>
                         <ListGroupItem><h4><BsStarFill/> {this.props.selectedMovie.AverageReviews}</h4></ListGroupItem>
@@ -58,7 +56,7 @@ class MovieDetail extends Component{
 
 const mapStateToProps = state => {
     return {
-        movies : state.movie.movies
+        movies : state.movie.selectedMovie
     }
 }
 

@@ -28,10 +28,12 @@ export function setMovie(movie){
     }
 }
 
-export function fetchMovies() {
+
+
+export function fetchMovie(movie_title) {
     const env = runtimeEnv();
     return dispatch => {
-        return fetch(`${env.REACT_APP_API_URL}/movies?reviews=true}`, {
+        return fetch(`${env.REACT_APP_API_URL}/movies/${movie_title}?reviews=true`, {
             method : 'GET',
             headers : {
                 'Accept' : 'application/json',
@@ -46,20 +48,20 @@ export function fetchMovies() {
                 return response.json;
             })
             .then((res) => {
-                dispatch(moviesFetched(res));
+                dispatch(movieFetched(res));
             })
             .catch((e) => console.log(e));
     }
 }
 
-export function fetchMovie(movie_title) {
+export function fetchMovies() {
     const env = runtimeEnv();
     return dispatch => {
-        return fetch(`${env.REACT_APP_API_URL}/movies/${movie_title}?reviews=true`, {
+        return fetch(`${env.REACT_APP_API_URL}/movies?reviews=true`, {
             method : 'GET',
             headers : {
                 'Accept' : 'application/json',
-                'Content-Type' : 'applicatoin/json',
+                'Content-Type' : 'application/json',
                 'Authorization' : localStorage.getItem('token')
             },
             mode : 'cors'})
@@ -67,10 +69,12 @@ export function fetchMovie(movie_title) {
                 if(!response.ok) {
                     throw Error(response.statusText);
                 }
-                return response.json;
+                return response.json();
             })
             .then((res) => {
-                dispatch(movieFetched(res));
+                dispatch(moviesFetched(res.movie));
+                //console.log(res.movies);
+                console.log(res.movies);
             })
             .catch((e) => console.log(e));
     }

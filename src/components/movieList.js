@@ -5,7 +5,7 @@ import {connect} from "react-redux";
 import {Image, Nav} from "react-bootstrap";
 import {Carousel} from "react-bootstrap";
 import {BsStarFill} from "react-icons/bs";
-import { LinkContainer } from "react-router-bootstrap"
+import { LinkContainer } from "react-router-bootstrap";
 
 class MovieList extends Component{
     constructor(props) {
@@ -40,9 +40,9 @@ class MovieList extends Component{
                        <Carousel.Item key = {movie.title}>
 
                             <div>
-                                <linkContainer to = {'/movie/'+movie.title} onClick={()=>this.handleClick(movie)}>
-                                    <Nav.Link><Image className="image" src={movie.imageUrl} thumbnail /></Nav.Link>
-                                </linkContainer>
+                                <LinkContainer to = {'/movie/'+movie.title} onClick={()=>this.handleClick(movie)}>
+                                    {/*<Nav.Link><Image className="image" src={movie.imageUrl} thumbnail /></Nav.Link>*/}
+                                </LinkContainer>
                             </div>
                            <Carousel.Caption>
                                <h3>{movie.title}</h3>
